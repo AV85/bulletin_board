@@ -1,0 +1,10 @@
+.col-md-2.text-center
+  - if item.avatar.attached?
+    p = image_tag item.avatar.variant(resize: "48x48!"), class: 'rounded-circle'
+  - else
+    p = image_tag gravatar_image_url(item.email, size: 48), height: 48, width: 48, class: "rounded-circle"
+  span.small-grey-text
+    - if item.full_name.present?
+      = link_to item.full_name, user_profile_path(item)
+    - else
+      = link_to item.email, user_profile_path(item)

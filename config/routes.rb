@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+
+  root 'home#index'
+  resources :ads, only: %i[index show]
+  get 'users/:id/profile', to: 'user#profile', as: :user_profile
+
+  namespace :cabinet do
+    resources :users
+    resources :ads
+  end
 end

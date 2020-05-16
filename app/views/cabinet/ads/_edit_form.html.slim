@@ -1,0 +1,17 @@
+= render 'shared/nav'
+.container.page-content
+  .row
+    .col-md-12
+      .p-3.my-3.border
+        .form
+          = simple_form_for [:cabinet, @ad] do |f|
+            = f.error_notification
+            = f.input :image
+            = f.input :name
+            = f.input :description
+            = f.input :price
+            - if current_user.admin?
+              = f.input :user_id, collection: User.all.map { |user| [user.email, user.id, {data: {email: user.email}}] }, include_blank: false
+            - else
+              = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
+            = f.button :submit, class: "btn-primary"

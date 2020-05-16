@@ -1,0 +1,40 @@
+nav.navbar.navbar-expand-md.navbar-dark.bg-primary.fixed-top
+  .container
+    a.navbar-brand href="/"
+      | Bulletin board
+    button.navbar-toggler data-target="#navbarCollapse" data-toggle="collapse" type="button"
+      span.navbar-toggler-icon
+    #navbarCollapse.collapse.navbar-collapse
+      .navbar-nav
+        a.nav-item.nav-link.active href="/"
+          = fa_icon "home", text: 'Home'
+      .navbar-nav.ml-auto.nav-link
+        - if user_signed_in?
+          .navbar-nav.ml-auto
+            = link_to 'Create AD', new_cabinet_ad_path, class: 'btn btn-warning', style: 'font-size: 20px'
+      .navbar-nav.ml-auto.nav-link
+        - if user_signed_in?
+          .dropdown.show.nav-btn-to-cabinet
+            a#dropdownMenuLink.btn.btn-primary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              | My cabinet
+            .dropdown-menu aria-labelledby="dropdownMenuLink"
+              - if (user_signed_in? && current_user.admin?) || (user_signed_in? && current_user.moderator?)
+                = link_to 'Users', cabinet_users_path, class: 'dropdown-item'
+                = link_to 'ADS', cabinet_ads_path, class: 'dropdown-item'
+              - if user_signed_in? && current_user.user?
+                = link_to 'My Profile', cabinet_user_path(current_user.id), class: 'dropdown-item'
+                = link_to 'My ADS', cabinet_ads_path, class: 'dropdown-item'
+        - if user_signed_in?
+          .nav-item
+            - if current_user.avatar.attached?
+              = image_tag current_user.avatar.variant(resize: "40x40!"), class: 'rounded-circle', style: 'margin-left: 15px'
+            - else
+              = image_tag gravatar_image_url(current_user.email, size: 40), height: 40, width: 40, class: "rounded-circle", style: 'margin-left: 15px'
+          .nav-item.nav-link
+            | Hello, #{current_user.email}
+            | &nbsp;
+          = link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-danger'
+        - else
+          = link_to 'Sign In', new_user_session_path, class: 'btn btn-primary'
+          | &nbsp;
+          = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success'

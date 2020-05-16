@@ -1,0 +1,42 @@
+= render 'shared/nav'
+= render 'shared/flash_notice'
+.container.page-content
+  .row
+    .col-md-12
+      .p-3.my-3.border
+        h1 Listing Users
+        table.table.table-hover.table-responsive
+          tr
+            th Id
+            th Role
+            th Avatar
+            th Email
+            th Full name
+            th Address
+            th City
+            th State
+            th Country
+            th Zip
+            th
+          - @users.each do |user|
+            tr
+              td = user.id
+              td = user.role
+              td
+                - if user.avatar.attached?
+                  = image_tag user.avatar.variant(resize: "32x32!"), class: 'rounded-circle'
+                - else
+                  = image_tag gravatar_image_url(user.email, size: 32), height: 32, width: 32, class: "rounded-circle"
+              td = user.email
+              td = user.full_name
+              td = user.address
+              td = user.city
+              td = user.state
+              td = user.country
+              td = user.zip
+              td
+                = link_to '', cabinet_user_path(user), class: 'fa fa-eye', style: 'padding: 4px'
+                = link_to '', edit_cabinet_user_path(user), class: 'fas fa-edit', style: 'padding: 4px'
+                = link_to '', cabinet_user_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: 'fa fa-trash', style: 'padding: 4px'
+
+        = link_to 'Create User', new_cabinet_user_path, class: 'btn btn-success'

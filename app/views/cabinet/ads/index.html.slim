@@ -1,0 +1,32 @@
+= render 'shared/nav'
+= render 'shared/flash_notice'
+.container.page-content
+  .row
+    .col-md-12
+      .p-3.my-3.border
+        h1 Listing ADS
+        table.table.table-hover
+          tr
+            th Id
+            th Image
+            th Name
+            th Description
+            th Price
+            th
+          - @ads.each do |ad|
+            tr
+              td = ad.id
+              td
+                - if ad.image.attached?
+                  = image_tag ad.image.variant(resize: "86x86!"), class: 'img-thumbnail'
+                - else
+                  = image_tag 'no_img.png', class: 'img-thumbnail', style: 'max-height: 86px'
+              td = ad.name
+              td = ad.description
+              td = ad.price
+              td
+                = link_to '', cabinet_ad_path(ad), class: 'fa fa-eye', style: 'padding: 4px'
+                = link_to '', edit_cabinet_ad_path(ad), class: 'fas fa-edit', style: 'padding: 4px'
+                = link_to '', cabinet_ad_path(ad), method: :delete, data: {confirm: 'Are you sure?'}, class: 'fa fa-trash', style: 'padding: 4px'
+
+        = link_to 'Create AD', new_cabinet_ad_path, class: 'btn btn-success'

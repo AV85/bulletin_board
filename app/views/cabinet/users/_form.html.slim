@@ -1,0 +1,17 @@
+= render 'shared/nav'
+.container.page-content
+  .p-3.my-3.border
+    .form
+      = simple_form_for [:cabinet, @user] do |f|
+        = f.error_notification
+        = f.input :avatar
+        = f.input :email
+        = f.input :password
+        = f.input :password_confirmation
+        = f.input :full_name
+        = f.input :address
+        = f.input :city
+        = f.input :state
+        = f.input :country
+        = f.input :zip
+        = f.button :submit, class: "btn-primary"

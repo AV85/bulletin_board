@@ -1,0 +1,10 @@
+- if notice
+  #message-notice.message-notice
+    .alert.alert-success role="alert"
+      span.message-notice-icon = fa_icon('info')
+      span.notice = notice
+- if alert
+  #message-alert.message-alert
+    .alert.alert-danger role="alert"
+      span.message-notice-icon = fa_icon('info')
+      span.notice = alert

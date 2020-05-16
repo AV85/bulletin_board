@@ -1,0 +1,23 @@
+.col-md-4
+  .card
+    - if item.image.attached?
+      = link_to ad_path(item)
+        = image_tag item.image.variant(resize: "600"), class: 'card-img-top'
+    - else
+      = link_to ad_path(item)
+        = image_tag 'no_img.png', class: 'card-img-top', alt: 'no image available'
+    .card-body
+      hr
+      .d-flex.justify-content-between
+        p.small-grey-text = "ID: #{item.id}"
+        p.small-grey-text
+          = fa_icon('pen', text: item.user.email )
+          br
+          = fa_icon('clock', text: item.created_at.strftime('%Y-%m-%d %H:%M') )
+      h3.text-danger #{item.price} $
+      hr
+      h5.card-title
+        = link_to "#{item.name}", ad_path(item)
+      p.card-text.small-grey-text
+        = item.description.truncate(160, separator: /\s/)
+  br

@@ -1,0 +1,2 @@
+module Cabinet::UsersHelper
+end
