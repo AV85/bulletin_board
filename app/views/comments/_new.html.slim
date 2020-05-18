@@ -1,0 +1,18 @@
+#exampleModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Modal title
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+        .form.p-3
+          = simple_form_for [@ad, Comment.new], remote: true do |f|
+            = f.error_notification
+            = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
+            = f.input :body, label: false
+            = f.button :submit, class: "btn-primary"
+      .modal-footer
+        button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+        button.btn.btn-primary type="button"  Save changes
+

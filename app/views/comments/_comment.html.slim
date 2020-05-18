@@ -1,0 +1,15 @@
+.m-3.border
+  .d-flex
+    .p-3
+      - if comment.user.avatar.attached?
+        = image_tag comment.user.avatar.variant(resize: "64x64!"), class: 'rounded-circle'
+      - else
+        = image_tag gravatar_image_url(comment.user.email, size: 64), height: 64, width: 64, class: "rounded-circle"
+    .p-3
+      p.small-grey-text
+        - if comment.user.full_name.present?
+          = fa_icon('pen', text: comment.user.full_name)
+        - else
+          = fa_icon('clock', text: comment.user.email)
+      p.small-grey-text = fa_icon('clock', text: comment.created_at.strftime('%Y-%m-%d %H:%M'))
+      p.small-grey-text = comment.body

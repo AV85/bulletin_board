@@ -1,4 +1,5 @@
 = render 'shared/nav'
+= render 'shared/flash_notice'
 .container.page-content
   .row
     .col-md-7
@@ -21,6 +22,21 @@
             = link_to "#{@ad.name}", ad_path(@ad)
           p.card-text.small-grey-text
             = @ad.description
+        div
+          hr
+          #ad-id data-id="#{@ad.id}"
+          #comments
+            h5.p-3 Comments:
+            = render @ad.comments
+          - if user_signed_in?
+            .p-3
+              button.btn.btn-success data-target="#exampleModal" data-toggle="modal" type="button"
+                | CREATE COMMENT
+            = render 'comments/new', ad: @ad
+          - else
+            .p-3
+              .alert.alert-warning role="alert"
+                | To add a comment you need to log in !
     .col-md-5
       .card
         .author.d-flex

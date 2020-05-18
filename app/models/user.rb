@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :ads
+  has_many :comments
   has_one_attached :avatar, dependent: :destroy
 
   def user?
