@@ -10,7 +10,7 @@ class Ability
 
     if user.user?
       can :manage, User.where(id: user.id)
-      can :index, Ad
+      can %i[index new create], Ad
       can :manage, Ad.where(user_id: user.id)
     end
   end

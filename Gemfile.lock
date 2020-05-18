@@ -103,6 +103,7 @@ GEM
       activesupport (>= 3.2)
     erubi (1.9.0)
     execjs (2.7.0)
+    ffaker (2.13.0)
     ffi (1.12.2)
     ffi (1.12.2-java)
     ffi (1.12.2-x64-mingw32)
@@ -289,6 +290,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views (~> 1.0)
   enumerize
+  ffaker
   font_awesome5_rails
   gravatar_image_tag
   jbuilder (~> 2.7)

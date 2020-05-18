@@ -1,15 +1,15 @@
-= render 'shared/nav'
-.container.page-content
-  .form
-    = simple_form_for [:cabinet, @user] do |f|
-      = f.error_notification
-      = f.input :avatar
-      = f.input :role, include_blank: false if current_user.admin?
-      = f.input :email
-      = f.input :full_name
-      = f.input :address
-      = f.input :city
-      = f.input :state
-      = f.input :country
-      = f.input :zip
-      = f.button :submit, class: "btn-primary"
+.form
+  = simple_form_for [:cabinet, @user] do |f|
+    = f.error_notification
+    = f.input :avatar
+    = f.input :role, include_blank: false if current_user.admin?
+    = f.input :email
+    = f.input :full_name
+    = f.input :address
+    = f.input :city
+    = f.input :state
+    = f.input :country
+    = f.input :zip
+    = f.button :submit, class: "btn-primary"
+  br
+  = link_to 'Back', :back, class: 'btn btn-info'

@@ -19,8 +19,9 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary.fixed-top
               | My cabinet
             .dropdown-menu aria-labelledby="dropdownMenuLink"
               - if (user_signed_in? && current_user.admin?) || (user_signed_in? && current_user.moderator?)
-                = link_to 'Users', cabinet_users_path, class: 'dropdown-item'
-                = link_to 'ADS', cabinet_ads_path, class: 'dropdown-item'
+                = link_to 'All Users', cabinet_users_path, class: 'dropdown-item'
+                = link_to 'All ADS', cabinet_ads_path, class: 'dropdown-item'
+                = link_to 'My Profile', cabinet_user_path(current_user.id), class: 'dropdown-item'
               - if user_signed_in? && current_user.user?
                 = link_to 'My Profile', cabinet_user_path(current_user.id), class: 'dropdown-item'
                 = link_to 'My ADS', cabinet_ads_path, class: 'dropdown-item'
@@ -31,8 +32,11 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary.fixed-top
             - else
               = image_tag gravatar_image_url(current_user.email, size: 40), height: 40, width: 40, class: "rounded-circle", style: 'margin-left: 15px'
           .nav-item.nav-link
-            | Hello, #{current_user.email}
-            | &nbsp;
+            - if current_user.full_name.present?
+              | Hello, #{link_to current_user.full_name, cabinet_user_path(current_user), class: 'text-dark font-weight-bold'}
+              | &nbsp;
+            -else
+              | Hello, #{link_to current_user.email, cabinet_user_path(current_user), class: 'text-dark font-weight-bold'}
           = link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-danger'
         - else
           = link_to 'Sign In', new_user_session_path, class: 'btn btn-primary'

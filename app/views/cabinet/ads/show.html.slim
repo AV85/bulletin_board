@@ -1,3 +1,34 @@
 = render 'shared/nav'
 .container.page-content
-  h1 asdasdas
+  .row
+    .col-md-9
+      .border.p-3
+        .text-center
+          - if @ad.image.attached?
+            = image_tag @ad.image, class: 'img-fluid'
+          - else
+            = image_tag 'no_img.png', class: 'img-thumbnail', style: 'max-height: 100%'
+        hr
+        | ID: #{@ad.id}
+        hr
+        | Price: #{@ad.price}
+        hr
+        | Name: #{@ad.name}
+        hr
+        | Description: #{@ad.id}
+        hr
+        = link_to 'Edit', edit_cabinet_ad_path, class: 'btn btn-primary mr-3'
+        = link_to 'Back', :back, class: 'btn btn-info'
+    .col-md-3
+      .border.p-3
+        span.small-grey-text Author:
+        hr
+        .d-flex
+        - if @ad.user.avatar.attached?
+          = image_tag @ad.user.avatar.variant(resize: "32x32!"), class: 'rounded-circle mr-2'
+        - else
+          = image_tag gravatar_image_url(@ad.user.email, size: 32), height: 32, width: 32, class: "rounded-circle mr-2"
+        - if @ad.user.full_name.present?
+          = link_to @ad.user.full_name, cabinet_user_path(@ad.user)
+        - else
+          = link_to @ad.user.email, cabinet_user_path(@ad.user)

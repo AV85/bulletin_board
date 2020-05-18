@@ -1,1 +1,48 @@
 = render 'shared/nav'
+.container.page-content
+  .row
+    .col-md-8
+      .card
+        .d-flex
+          .p-3
+            - if @user.avatar.attached?
+              = image_tag @user.avatar.variant(resize: "200x200!"), class: 'img-thumbnail'
+            - else
+              = image_tag gravatar_image_url(@user.email, size: 200), height: 200, width: 200, class: "rounded-circle"
+          .p-3
+            - if @user.full_name.present?
+              p Full name: #{@user.full_name if @user.full_name.present?}
+            p Email: #{@user.email}
+            - if @user.country.present?
+              p Country: #{@user.country}
+            - if @user.city.present?
+              p City: #{@user.city }
+        .p-3
+          ul#myTab.nav.nav-tabs role="tablist"
+            li.nav-item
+              a#address-tab.nav-link.active aria-controls="home" aria-selected="true" data-toggle="tab" href="#address" role="tab"  Full address
+            li.nav-item
+              a#profile-tab.nav-link aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" role="tab"  Country
+            li.nav-item
+              a#contact-tab.nav-link aria-controls="contact" aria-selected="false" data-toggle="tab" href="#contact" role="tab"  City
+          #myTabContent.tab-content
+            #address.tab-pane.fade.show.active aria-labelledby="address-tab" role="tabpanel"
+              .p-3 = @user.address
+            #profile.tab-pane.fade aria-labelledby="profile-tab" role="tabpanel"
+              .p-3 = @user.country
+            #contact.tab-pane.fade aria-labelledby="contact-tab" role="tabpanel"
+              .p-3 = @user.city
+        .p-3
+          hr
+          | MAP
+          hr
+    .col-md-4
+      .card.p-3
+        | All user announcements:
+        hr
+        - if @ads.present?
+          - @ads.each do |ad|
+            = link_to ad.name, ad_path(ad)
+            hr
+        - else
+          h5.text-danger User has not added ads yet
