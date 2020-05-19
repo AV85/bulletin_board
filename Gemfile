@@ -41,6 +41,8 @@ gem 'gravatar_image_tag'
 gem "mini_magick"
 # Cloud
 gem 'cloudinary'
+# GoogleMap
+gem 'geocoder'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

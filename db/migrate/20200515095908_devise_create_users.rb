@@ -8,6 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.integer :role,              null: false, default: 0
       t.string :full_name,          null: false, default: ""
       t.string :address,            null: false, default: ""
+      t.float :latitude,            null: false, default: 0.0
+      t.float :longitude,           null: false, default: 0.0
       t.string :city,               null: false, default: ""
       t.string :state,              null: false, default: ""
       t.string :country,            null: false, default: ""

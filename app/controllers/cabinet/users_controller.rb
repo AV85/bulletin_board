@@ -67,6 +67,8 @@ class Cabinet::UsersController < ApplicationController
       :password_confirmation,
       :full_name,
       :address,
+      :latitude,
+      :longitude,
       :city,
       :state,
       :country,

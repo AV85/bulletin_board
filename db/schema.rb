@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2020_05_18_114259) do
     t.integer "role", default: 0, null: false
     t.string "full_name", default: "", null: false
     t.string "address", default: "", null: false
+    t.float "latitude", default: 0.0, null: false
+    t.float "longitude", default: 0.0, null: false
     t.string "city", default: "", null: false
     t.string "state", default: "", null: false
     t.string "country", default: "", null: false

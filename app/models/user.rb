@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :comments
   has_one_attached :avatar, dependent: :destroy
 
+  geocoded_by :address
+  after_validation :geocode
+
   def user?
     role == 0
   end
