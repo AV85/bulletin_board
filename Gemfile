@@ -39,6 +39,8 @@ gem 'font_awesome5_rails'
 gem 'gravatar_image_tag'
 # Minimagik
 gem "mini_magick"
+# Cloud
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
