@@ -12,6 +12,8 @@ class Ability
       can :manage, User.where(id: user.id)
       can %i[index new create], Ad
       can :manage, Ad.where(user_id: user.id)
+      can %i[index new create], Cabinet::Comment
+      can :manage, Comment.where(user_id: user.id)
     end
   end
 end

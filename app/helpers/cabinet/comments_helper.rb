@@ -1,0 +1,2 @@
+module Cabinet::CommentsHelper
+end

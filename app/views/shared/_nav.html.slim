@@ -21,10 +21,12 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-primary.fixed-top
               - if (user_signed_in? && current_user.admin?) || (user_signed_in? && current_user.moderator?)
                 = link_to 'All Users', cabinet_users_path, class: 'dropdown-item'
                 = link_to 'All ADS', cabinet_ads_path, class: 'dropdown-item'
+                = link_to 'All Comments', cabinet_comments_path, class: 'dropdown-item'
                 = link_to 'My Profile', cabinet_user_path(current_user.id), class: 'dropdown-item'
               - if user_signed_in? && current_user.user?
                 = link_to 'My Profile', cabinet_user_path(current_user.id), class: 'dropdown-item'
                 = link_to 'My ADS', cabinet_ads_path, class: 'dropdown-item'
+                = link_to 'My Comments', cabinet_comments_path, class: 'dropdown-item'
         - if user_signed_in?
           .nav-item
             - if current_user.avatar.attached?

@@ -1,9 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_ad
-  #load_and_authorize_resource
 
   def create
-
     comment = @ad.comments.create! comments_params
     CommentsChannel.broadcast(comment)
     redirect_to @ad

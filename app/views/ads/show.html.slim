@@ -39,7 +39,8 @@
                 | To add a comment you need to log in !
     .col-md-5
       .card
-        .author.d-flex
+        .p-3.border-bottom Author:
+        .author.d-flex.border-bottom
           .avatar
             - if @ad.user.avatar.attached?
               p = image_tag @ad.user.avatar.variant(resize: "100x100!"), class: 'img-thumbnail'

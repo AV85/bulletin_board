@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   namespace :cabinet do
     resources :users
     resources :ads
+    resources :comments
   end
 end
